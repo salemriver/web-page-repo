@@ -1,0 +1,400 @@
+#################### Intro ####################
+
+
+# check version
+
+git --version
+
+# check git config
+
+git config --list
+
+# set user name and user id
+
+git config --global user.name "Bob Baker"
+
+git config --global user.email "bob@loonycorn.com"
+
+# Again check git config and it should be updated
+
+git config --list
+
+# check user details from git config
+
+git config user.name
+
+git config user.email
+
+# git manual (show high level and low level command)
+man git
+
+# help quick reference
+git help config
+
+
+#################### CreatingAddingAndCommitingFilesInGit ####################
+
+
+# create git project folder
+
+mkdir company_web
+
+cd company_web
+
+# Initialize git
+
+git init
+
+cd .git
+
+ls
+
+cd ..
+
+# create a new text file
+
+nano info.txt 
+
+We are creating a webpage for our company.
+
+echo "Brocadero webpage" >> README.md
+
+ls
+
+git status
+
+git add .
+
+git status
+
+git commit -m "This is my first commit"
+
+git status
+
+
+#################### CreatingAGitHubAccountAndPushingFiles ####################
+
+
+# create github account https://github.com/ 
+
+loony-bob
+
+bob@loonycorn.com
+
+web-page-repo
+
+This code contains code for the web page
+
+git remote -v
+
+git remote add origin https://github.com/loony-bob/web-page-repo.git
+
+git remote -v 
+
+# Connecting using SSH key
+
+ssh-keygen -t rsa -b 4096 -C "bob@loonycorn.com"
+
+cd ../../..
+
+cd .ssh
+
+cat id_rsa.pub
+
+# goto github account and go to Settings -> SSH and GPG keys -> New SSH key 
+# Add title and the paste key in "Key" column
+
+# goto terminal and connect using SSH
+
+ssh -T git@github.com
+
+cd ..
+
+cd Desktop/GitAndGithub/company_web/
+
+# push into master
+
+git push origin master
+
+
+#################### AddingWebPageFileToTheRepo ####################
+
+
+# check git status
+
+git status
+
+# create company_web_page.html file and images folder
+# Logo Link
+# https://pixabay.com/illustrations/metal-b-text-font-letter-alphabet-1328120/
+
+git status
+
+git add .
+
+git commit -m "Added web page"
+
+git status
+
+git push origin master
+
+
+########## AddingAndModifyingFiles ##########
+
+
+# create about_company.html file
+
+git status
+
+# it will show the new file in untracked files
+
+# now adding the new file and check the status and now it will show 
+# "one file to be committed"
+
+git add about_company.html
+git status
+
+# change compay_web_page.html file 
+
+git status
+
+git add company_web_page.html
+
+git status
+
+# again change compay_web_page.html file
+
+git status
+
+git add company_web_page.html
+
+git status
+
+git status --short
+
+# M = modified
+# A = New file added to staging area
+# ?? = New file untracked by Git
+
+git diff --staged
+
+git commit -a -m "Added about company page"
+
+git status
+
+git push origin master
+
+git status
+
+git log
+
+git log -1
+
+git log -2
+
+git log --oneline
+
+git log --stat
+
+git log --patch
+
+git log --oneline --graph --decorate --all
+
+
+#################### AddingANewBranch ####################
+
+
+# Visualization can be shown on https://git-school.github.io/visualizing-git/
+
+# In visualization you can run these command one by one and show the chnages
+git commit
+git commit
+git checkout -b new_branch 
+git commit 
+git commit 
+git checkout master
+git commit
+git commit
+git checkout new_branch
+git commit
+
+ls
+
+git rm info.txt
+
+ls
+
+git rm --cached README.md
+
+ls 
+
+git status
+
+ls
+
+# renamimg file 
+git mv company_web_page.html brocadero_web_page.html
+
+ls
+
+git checkout -b new_branch
+
+git status
+
+git commit -m "Rename company_web_page.html and remove info.txt and README.md"
+
+git status
+
+ls
+
+git checkout master 
+
+git add .
+git stash
+git status 
+git stash list
+git stash show 
+
+git checkout master
+
+
+#################### MergingABranchToTheMaster ####################
+
+
+ls
+
+# add history.html
+
+git status
+
+git add history.html
+
+git commit -m "Added history page"
+
+ls
+
+git checkout new_branch
+
+ls
+
+# Go to visualization page and show merging by running following commands
+git checkout master
+git merge new_branch
+
+ls
+
+nano about_company.html
+
+# change header from h1 to h2
+
+git status
+
+git add about_company.html
+
+git commit -m "Modified heading"
+
+git checkout master
+
+# Merging two branches
+git merge new_branch
+
+# write some message by pressing "i" and the use ":wq" to quit
+git status
+
+git log --oneline
+
+git push origin master
+
+
+#################### ResolvingMergeConflicts ####################
+
+
+ls 
+
+git status
+
+git add history.html
+
+git commit -m "Added Italics and underline"
+
+git push origin master
+
+git pull origin master
+
+ls
+
+git add history.html
+
+git commit -m "Added Italics and underline"
+
+git push origin master
+
+
+#################### TagsAndReleases ####################
+
+
+git log --oneline
+
+git tag
+
+git tag stable master
+
+git tag
+
+git log --oneline --graph --decorate --all 
+
+git tag -a v0.1 -m "0.1 release" c955a8e
+
+git tag
+
+git tag -a v0.2 -m "0.2 release" 41b8a73
+
+git tag
+
+git push --tags
+
+# delete stable tag from github and but local file tag will not change so delete manually
+
+git tag
+
+git tag -d "stable"
+
+git tag
+
+git tag -d "v0.1"
+
+git push origin :v0.1
+
+
+#################### CloningARepo ####################
+
+
+cd ..
+
+git clone https://github.com/loony-bob/web-page-repo.git
+
+cd web-page-repo
+
+ls
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
